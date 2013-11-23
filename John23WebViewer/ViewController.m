@@ -17,9 +17,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	NSURL *myURL = [NSURL URLWithString:@"http://john23.com"];
+    NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
+    [myView loadRequest:myRequest];
 }
-
+- (IBAction)StartOver:(id)sender {
+    [self loadWebViewWithURL:@"http://john23.com"];
+}
+-(void)loadWebViewWithURL:(NSString*)urlstr{
+    
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:urlstr] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+    [myView loadRequest:request];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
